@@ -8,16 +8,31 @@ static const char *const fonts[] = {
 	"terminus:size=8"
 };
 static const char dmenufont[] = "terminus:size=8";
-static const char normbordercolor[] = "#888888";
+
+static const char normbordercolor[] = "#888888"; // x01
 static const char normbgcolor[]     = "#000000";
 static const char normfgcolor[]     = "#ffffff";
-static const char selbordercolor[]  = "#ffffff";
+static const char selbordercolor[]  = "#ffffff"; // x02
 static const char selbgcolor[]      = "#ffffff";
 static const char selfgcolor[]      = "#000000";
+
+static const char x03bordercolor[]  = "#ffffff";
+static const char x03bgcolor[]      = "#000000";
+static const char x03fgcolor[]      = "#bbbbbb";
+static const char x04bordercolor[]  = "#ffffff";
+static const char x04bgcolor[]      = "#000000";
+static const char x04fgcolor[]      = "#999999";
+static const char x05bordercolor[]  = "#ffffff";
+static const char x05bgcolor[]      = "#ff0000";
+static const char x05fgcolor[]      = "#ffffff";
+static const char x06bordercolor[]  = "#ffffff";
+static const char x06bgcolor[]      = "#000000";
+static const char x06fgcolor[]      = "#ffff00";
+
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
-static const int showbar            = 1;        /* 0 means no bar */
-static const int topbar             = 1;        /* 0 means bottom bar */
+static const int showbar            = 1;        /* 0 means main bar off by default*/
+static const int showebar           = 1;        /* 0 means extra bar off by default */
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
@@ -106,6 +121,7 @@ static Key keys[] = {
 	// miscellaneous functionality
 	{ ControlMask|ShiftMask,        XK_q,      killclient,     {0} },
 	{ ControlMask|ShiftMask,        XK_v,      togglebar,      {0} },
+	{ ControlMask|ShiftMask,        XK_b,      toggleebar,     {0} },
 	{ ControlMask|ShiftMask,        XK_space,  togglefloating, {0} },
 	// move/focus
 	{ ControlMask|ShiftMask,        XK_comma,  focusmon,       {.i = +1 } },
@@ -170,6 +186,9 @@ static Button buttons[] = {
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
 	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
 	{ ClkStatusText,        0,              Button2,        zoom,           {0} },
+	{ ClkExtraStatusLeft,   0,              Button2,        zoom,           {0} },
+	{ ClkExtraStatusMiddle, 0,              Button2,        zoom,           {0} },
+	{ ClkExtraStatusRight,  0,              Button2,        zoom,           {0} },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
 	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },

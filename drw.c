@@ -218,8 +218,12 @@ drw_rect(Drw *drw, int x, int y, unsigned int w, unsigned int h, int filled, int
 		XDrawRectangle(drw->dpy, drw->drawable, drw->gc, x, y, w, h);
 }
 
+/*
+ * patched in argument "border": draw a half-character border on each side of
+ * the text.  dwm does this normally; set border to false/0 to disable it.
+ */
 int
-drw_text(Drw *drw, int x, int y, unsigned int w, unsigned int h, const char *text, int invert)
+drw_text(Drw *drw, int x, int y, unsigned int w, unsigned int h, const char *text, int invert, int border)
 {
 	char buf[1024];
 	int tx, ty, th;
@@ -244,7 +248,11 @@ drw_text(Drw *drw, int x, int y, unsigned int w, unsigned int h, const char *tex
 	} else {
 		XSetForeground(drw->dpy, drw->gc, invert ?
 		               drw->scheme->fg->pix : drw->scheme->bg->pix);
-		XFillRectangle(drw->dpy, drw->drawable, drw->gc, x, y, w, h);
+		if (border)
+			XFillRectangle(drw->dpy, drw->drawable, drw->gc, x, y, w, h);
+		else
+			XFillRectangle(drw->dpy, drw->drawable, drw->gc, x+(h/2), y, w-(h/2), h);
+
 		d = XftDrawCreate(drw->dpy, drw->drawable,
 		                  DefaultVisual(drw->dpy, drw->screen),
 		                  DefaultColormap(drw->dpy, drw->screen));
