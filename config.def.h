@@ -1,5 +1,6 @@
 /* See LICENSE file for copyright and license details. */
 
+#include "push.c"           /* http://dwm.suckless.org/patches/push */
 #include <X11/XF86keysym.h> /* XFree volume keys */
 
 /* appearance */
@@ -116,10 +117,10 @@ static Key keys[] = {
 	{ ControlMask|ShiftMask,        XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	// move windows
-// 	{ ControlMask|ShiftMask,        XK_n,      pushdown,       {0} },
-// 	{ MODKEY,                       XK_n,      pushdown,       {0} },
-// 	{ ControlMask|ShiftMask,        XK_p,      pushup,         {0} },
-// 	{ MODKEY,                       XK_p,      pushup,         {0} },
+	{ ControlMask|ShiftMask,        XK_n,      pushdown,       {0} },
+	{ MODKEY,                       XK_n,      pushdown,       {0} },
+	{ ControlMask|ShiftMask,        XK_p,      pushup,         {0} },
+	{ MODKEY,                       XK_p,      pushup,         {0} },
 	{ ShiftMask|MODKEY,             XK_comma,  tagmon,         {.i = +1 } },
 	{ ShiftMask|MODKEY,             XK_period, tagmon,         {.i = -1 } },
 	{ ControlMask|ShiftMask,        XK_a,      incnmaster,     {.i = +1 } },
